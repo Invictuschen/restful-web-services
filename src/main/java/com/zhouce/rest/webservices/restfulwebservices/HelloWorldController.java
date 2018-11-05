@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +34,11 @@ public class HelloWorldController {
 		return new HelloWorldBean("Hello World : this is created by bean");
 	}
 	
+	//hello-world/path-variable/zhouce
+	// pay attention, here the {variable} means the variable that the uri should receive, the name must be equal to the name in the service function
+	@GetMapping (path = "/hello-world/path-variable/{variable}")
+	public HelloWorldBean helloWorldPathVariable(@PathVariable String variable) {
+		return new HelloWorldBean(String.format("Hello World, %s", variable + " (this is created by bean and receive variable as the uri)"));
+	}
 }
  
