@@ -24,7 +24,12 @@ public class UserResource {
 	//retrieveUser(int id) GET /users/{id}
 	@GetMapping(path = "/users/{uid}") 
 	public User retrieveUser(@PathVariable int uid) { // 这个@pathvariable是当用变量在url时必用的annotation
-		return userdata.findOne(uid);
+		User user = userdata.findOne(uid);
+		if (user == null) {
+			throw new UserNotFoundException("id-" + uid +"not found");
+		}
+		return user;
+		
 	}
 	
 	//	input - details of user
