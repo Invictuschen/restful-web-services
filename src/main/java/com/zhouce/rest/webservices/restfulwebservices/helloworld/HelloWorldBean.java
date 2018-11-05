@@ -1,4 +1,4 @@
-package com.zhouce.rest.webservices.restfulwebservices;
+package com.zhouce.rest.webservices.restfulwebservices.helloworld;
 
 public class HelloWorldBean {
 	private String message;
