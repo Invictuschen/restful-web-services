@@ -1,4 +1,4 @@
-package com.zhouce.rest.webservices.restfulwebservices.User;
+package com.zhouce.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
 import java.util.ArrayList;

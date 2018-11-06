@@ -1,3 +1,4 @@
+
 package com.zhouce.rest.webservices.restfulwebservices;
 
 import org.springframework.boot.SpringApplication;
@@ -11,5 +12,3 @@ public class RestfulWebServicesApplication {
 	}
 	
 }
-
-

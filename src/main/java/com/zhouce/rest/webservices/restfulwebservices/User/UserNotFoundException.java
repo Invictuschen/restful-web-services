@@ -1,4 +1,4 @@
-package com.zhouce.rest.webservices.restfulwebservices.User;
+package com.zhouce.rest.webservices.restfulwebservices.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
