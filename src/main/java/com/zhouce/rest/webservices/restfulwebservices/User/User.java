@@ -2,13 +2,18 @@ package com.zhouce.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 public class User {
 	private Integer id; // **very important**
 	
+	@Size(min = 2, message = "name has to have at least 2 characters") // validate the format of input name string
 	private String name;
 	
 	private String gender;
 	
+	@Past // restriction of the birthdate
 	private Date birthDate;
 
 	public Integer getId() {

@@ -2,6 +2,8 @@ package com.zhouce.rest.webservices.restfulwebservices.user;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +38,7 @@ public class UserController {
 	//	input - details of user
 	//  output - CREATED &Return the created URI
 	@PostMapping("/users")
-	public void createUser(@RequestBody User user) {
+	public void createUser(@Valid @RequestBody User user) { // 这里的@valid是调用responseEntityExceptionHandler类中handleMethodArgumentNotValid这个函数
 		User savedUser = userdata.save(user);
 	}
 	
