@@ -1,6 +1,7 @@
 package com.zhouce.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,20 @@ public class UserDaoService {
 	public User findOne(int id) {
 		for (User user : users) {
 			if (user.getId() == id) {
+				return user;
+			}
+		}
+		return null;
+	}
+	
+	//User delete(int id)
+	public User deleteById(int id) {
+		Iterator<User> iter = users.iterator(); // 用iterator的原因是你不需要知道数据的储存结构就可以遍历数据，也方便数据结构的改变
+		while (iter.hasNext()) {
+			User user = iter.next();
+			if (user.getId() == id) {
+//				users.remove(user);
+				iter.remove(); // 在iter上remove就是相当于在list里remove
 				return user;
 			}
 		}

@@ -3,6 +3,7 @@ package com.zhouce.rest.webservices.restfulwebservices.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,5 +38,15 @@ public class UserController {
 	@PostMapping("/users")
 	public void createUser(@RequestBody User user) {
 		User savedUser = userdata.save(user);
+	}
+	
+	//input id of user
+	// output - delete that user by id
+	@DeleteMapping("/users/{uid}")
+	public void deleteUser(@PathVariable int uid) {
+		User user = userdata.deleteById(uid);
+		if (user == null) {
+			throw new UserNotFoundException("id-" + uid +"not found");
+		}
 	}
 }
