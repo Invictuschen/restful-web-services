@@ -38,7 +38,7 @@ public class UserController {
 	//	input - details of user
 	//  output - CREATED &Return the created URI
 	@PostMapping("/users")
-	public void createUser(@Valid @RequestBody User user) { // 这里的@valid是调用responseEntityExceptionHandler类中handleMethodArgumentNotValid这个函数
+	public void createUser(@Valid @RequestBody User user) { // 这里的@valid是调用responseEntityExceptionHandler类中handleMethodArgumentNotValid这个函数, 这里相当于是个mark，真正对于validation的限制要写在实体里
 		User savedUser = userdata.save(user);
 	}
 	
