@@ -1,10 +1,13 @@
 package com.zhouce.rest.webservices.restfulwebservices.user;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +29,26 @@ public class UserController {
 	
 	//retrieveUser(int id) GET /users/{id}
 	@GetMapping(path = "/users/{uid}") 
-	public User retrieveUser(@PathVariable int uid) { // 这个@pathvariable是当用变量在url时必用的annotation
+	public Resource<User> retrieveUser(@PathVariable int uid) { // 这个@pathvariable是当用变量在url时必用的annotation
 		User user = userdata.findOne(uid);
 		if (user == null) { // 不做exception handle的话，即使用户不存在，也会默认200
 			throw new UserNotFoundException("id-" + uid +"not found");
 		}
-		return user;
 		
+		//HATEOAS    hypermedia as the engine of application state : 同样引入其他相关链接作为output
+		
+		// "all-users", SERVER_PATH + "/users"
+		//retrieveAllUser
+		
+		Resource<User> resources = new Resource<User>(user);
+		
+		// get all the users of the userdata
+		ControllerLinkBuilder linkTo = 
+				linkTo(methodOn(this.getClass()).retrieveAllUsers());
+		resources.add(linkTo.withRel("all-users"));
+		//		return user;
+		//    to use hateoas, we don't return user, we return resource of users(user and a set of links) back
+		return resources;
 	}
 	
 	//	input - details of user
